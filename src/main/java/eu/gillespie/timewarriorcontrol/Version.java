@@ -1,6 +1,5 @@
 package eu.gillespie.timewarriorcontrol;
 
-import com.sun.istack.internal.NotNull;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
 import lombok.Getter;
 import lombok.NonNull;
