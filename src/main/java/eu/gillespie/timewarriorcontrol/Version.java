@@ -3,6 +3,7 @@ package eu.gillespie.timewarriorcontrol;
 import com.sun.istack.internal.NotNull;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.util.Objects;
 
@@ -52,7 +53,7 @@ public class Version implements Comparable<Version>{
     }
 
     @Override
-    public int compareTo(@NotNull Version o) {
+    public int compareTo(@NonNull Version o) {
         if(getMajorVersion() != o.getMajorVersion())
             return getMajorVersion() - o.getMajorVersion();
 
