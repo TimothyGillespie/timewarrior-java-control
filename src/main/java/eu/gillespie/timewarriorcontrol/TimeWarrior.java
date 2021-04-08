@@ -1,6 +1,6 @@
 package eu.gillespie.timewarriorcontrol;
 
-import eu.gillespie.timewarriorcontrol.exception.DOMObjectNotFound;
+import eu.gillespie.timewarriorcontrol.exception.DOMObjectNotFoundException;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -33,7 +33,7 @@ public class TimeWarrior {
         this.version = new Version(versionString);
     }
 
-    public String get(String domPath) throws DOMObjectNotFound {
+    public String get(String domPath) throws DOMObjectNotFoundException {
         try {
             Process p = rt.exec(new String[]{
                     getCmdCommand(),
@@ -44,11 +44,11 @@ public class TimeWarrior {
             p.waitFor();
 
             if(p.exitValue() != 0)
-                throw new DOMObjectNotFound(domPath);
+                throw new DOMObjectNotFoundException(domPath);
 
             return readWhole(p.getInputStream()).trim();
         } catch (IOException | InterruptedException converted) {
-            throw new DOMObjectNotFound(domPath);
+            throw new DOMObjectNotFoundException(domPath);
         }
     }
 
