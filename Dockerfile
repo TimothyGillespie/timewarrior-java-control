@@ -30,6 +30,8 @@ RUN apk add \
     maven
 
 COPY --from=build-timewarrior /usr/local/bin/timew /usr/local/bin
+# This skips the interactive question if the config etc. should be created
+RUN mkdir ~/.taskwarrior
 WORKDIR /
 
 COPY src /home/app/src
