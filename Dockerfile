@@ -1,7 +1,7 @@
-FROM alpine AS build-timewarrior
+FROM ubuntu:20.04 AS build-timewarrior
 
-RUN apk update
-RUN apk add \
+RUN apt-get update
+RUN apt-get install \
     cmake \
     make \
     g++ \
@@ -22,11 +22,11 @@ RUN make
 RUN make install
 
 # Compiling server jar
-FROM alpine
+FROM ubuntu:20.04
 
-RUN apk update
-RUN apk add \
-    openjdk8 \
+RUN apt-get update
+RUN apt-get install \
+    openjdk-8 \
     maven
 
 COPY --from=build-timewarrior /usr/local/bin/timew /usr/local/bin
@@ -36,4 +36,4 @@ WORKDIR /
 
 COPY src /home/app/src
 COPY pom.xml /home/app
-RUN mvn -f /home/app/pom.xml clean compile test
+RUN mvn -f /home/app/pom.xml test
