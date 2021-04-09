@@ -1,7 +1,7 @@
 FROM ubuntu:20.04 AS build-timewarrior
 
 RUN apt-get update
-RUN apt-get install \
+RUN apt-get install -y\
     cmake \
     make \
     g++ \
@@ -25,7 +25,7 @@ RUN make install
 FROM ubuntu:20.04
 
 RUN apt-get update
-RUN apt-get install \
+RUN apt-get install -y \
     openjdk-8-jdk-headless \
     maven
 
