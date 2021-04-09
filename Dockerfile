@@ -1,4 +1,4 @@
-FROM alpine AS build-timewarrior
+FROM maven:3.5.3-jdk-8-alpine
 
 RUN apk update
 RUN apk add \
@@ -22,12 +22,8 @@ RUN make
 RUN make install
 
 # Compiling server jar
-FROM maven:3.5.3-jdk-8-alpine
-
-COPY --from=build-timewarrior /usr/local/bin/timew /usr/local/bin
 # This skips the interactive question if the config etc. should be created
 RUN mkdir ~/.taskwarrior
-WORKDIR /
 
 COPY src /home/app/src
 COPY pom.xml /home/app
