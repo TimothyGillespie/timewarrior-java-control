@@ -1,10 +1,7 @@
-FROM ubuntu:20.04 AS build-timewarrior
+FROM alpine AS build-timewarrior
 
-ENV TZ=Europe/Berlin
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-RUN apt-get update
-RUN apt-get install -y\
+RUN apk update
+RUN apk add \
     cmake \
     make \
     g++ \
@@ -25,12 +22,7 @@ RUN make
 RUN make install
 
 # Compiling server jar
-FROM ubuntu:20.04
-
-RUN apt-get update
-RUN apt-get install -y \
-    openjdk-8-jdk-headless \
-    maven
+FROM maven:3.5.3-jdk-8-alpine
 
 COPY --from=build-timewarrior /usr/local/bin/timew /usr/local/bin
 # This skips the interactive question if the config etc. should be created
