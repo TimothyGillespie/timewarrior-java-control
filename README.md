@@ -16,7 +16,7 @@
 | `timew help [...]` | won't implement |
 | `timew join @<id> @<id>` | not yet implemented |
 | `timew lengthen @<id> [@<id> ...] <duration>` | not yet implemented |
-| <code>timew modify (start&#124;end) @<id> <date></code> | not yet implemented |
+| <code>timew modify (start&#124;end) @&#60;id&#62; &#60;date&#62;</code> | not yet implemented |
 | `timew month [<interval>] [<tag> ...]` | not yet implemented |
 | `timew move @<id> <date>` | not yet implemented |
 | `timew [report] <report> [<interval>] [<tag> ...]` | not yet implemented |
