@@ -1,4 +1,4 @@
-package eu.gillespie.test;
+package eu.gillespie.test.DOM;
 
 import eu.gillespie.timewarriorcontrol.TimeWarrior;
 import eu.gillespie.timewarriorcontrol.exception.DOMObjectNotFoundException;
@@ -9,11 +9,16 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class DomTest {
+public class GeneralDomTest {
+
+    /*
+     * Error cases
+     */
 
     @Test
     void testGetDom() throws VersionFormatException, IOException, DOMObjectNotFoundException {
         // time warrior only exits with an error when the dom path begins with "dom."
         assertThrows(DOMObjectNotFoundException.class, () -> new TimeWarrior().get("dom.nonexistant"));
     }
+
 }
