@@ -52,6 +52,14 @@ public class TimeWarrior {
         }
     }
 
+    public boolean isTracking() {
+        try {
+            return this.get("dom.active").trim().equals("1");
+        } catch (DOMObjectNotFoundException ignored) {
+            return false;
+        }
+    }
+
 
     private String readWhole(InputStream in) {
         BufferedReader bf = new BufferedReader(new InputStreamReader(in));
