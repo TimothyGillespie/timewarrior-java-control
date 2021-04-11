@@ -28,8 +28,10 @@ public class TimeWarrior {
 
     public TimeWarrior(String cmdCommand) throws IOException, VersionFormatException {
         this.cmdCommand = cmdCommand;
+
         Process p = rt.exec(new String[] {getCmdCommand(), "--version"});
         String versionString = readWhole(p.getInputStream());
+
         this.version = new Version(versionString);
     }
 
@@ -52,6 +54,13 @@ public class TimeWarrior {
         }
     }
 
+    /**
+     * Retrieves the information if any tracking is currently active.
+     * This is the case if there is a tracking without and end time.
+     * It uses the DOM path dom.active.
+     *
+     * @return true if there is a on going tracking, false otherwise or if an error occurs (i.e. could not find timew)
+     */
     public boolean isTracking() {
         try {
             return this.get("dom.active").trim().equals("1");
