@@ -1,7 +1,9 @@
 # Timewarrior Java Control
 [![CI](https://github.com/TimothyGillespie/timewarrior-java-control/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/TimothyGillespie/timewarrior-java-control/actions/workflows/main.yml)
 
-Overview of the timewarrior commands. Assume `Timewarrior tw = new Timewarrior()`
+### Overview of the timewarrior commands
+
+Assume `Timewarrior tw = new Timewarrior()`
 
 | TimeWarrior Command | Java Control |
 | --- | --- |
@@ -36,8 +38,9 @@ Overview of the timewarrior commands. Assume `Timewarrior tw = new Timewarrior()
 | `timew week <interval> [<tag ...]` | not yet implemented |
 
 
-DOM information retrieval.
-n is supposed to be understood as number, more information is available here: https://timewarrior.net/reference/timew-dom.7/
+### DOM information retrieval
+
+Assume `n` is a number like 1. More information is available here: https://timewarrior.net/reference/timew-dom.7/
 
 | DOM Path | Java Control | Return type |
 | --- | --- | --- |
