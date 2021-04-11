@@ -35,6 +35,14 @@ public class TimeWarrior {
         this.version = new Version(versionString);
     }
 
+    /**
+     * Retrieves the raw information as a String for a given DOM path.
+     * It uses the timew get command.
+     *
+     * @param domPath The DOM path to request. Starts with "dom."
+     * @return The returned information
+     * @throws DOMObjectNotFoundException if timewarrior exits with an error code or another error occurs
+     */
     public String get(String domPath) throws DOMObjectNotFoundException {
         try {
             Process p = rt.exec(new String[]{
