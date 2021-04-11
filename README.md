@@ -1,6 +1,8 @@
 # Timewarrior Java Control
 [![CI](https://github.com/TimothyGillespie/timewarrior-java-control/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/TimothyGillespie/timewarrior-java-control/actions/workflows/main.yml)
 
+Overview of the timewarrior commands. Assume `Timewarrior tw = new Timewarrior()`
+
 | TimeWarrior Command | Java Control |
 | --- | --- |
 | `timew --version` | `tw.getVersion()` |
