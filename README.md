@@ -34,3 +34,29 @@ Overview of the timewarrior commands. Assume `Timewarrior tw = new Timewarrior()
 | `timew undo` | not yet implemented |
 | `timew untag @<id> [@<id> ...] <tag> [<tag ...]` | not yet implemented |
 | `timew week <interval> [<tag ...]` | not yet implemented |
+
+
+DOM information retrieval.
+n is supposed to be understood as number, more information is available here: https://timewarrior.net/reference/timew-dom.7/
+
+| DOM Path | Java Control | Return type |
+| --- | --- | --- |
+| `dom.tag.count` | not yet implemented | `Integer` |
+| `dom.tag.n` | not yet implemented | [`Tag`](https://github.com/TimothyGillespie/timewarrior-java-control/blob/main/src/main/java/eu/gillespie/timewarriorcontrol/Tag.java) |
+||
+| `dom.active` | `tw.isTracking()` | `boolean` |
+| `dom.active.tag.count` | not yet implemented | `Integer` |
+| `dom.active.tag.n` | not yet implemented | [`Tag`](https://github.com/TimothyGillespie/timewarrior-java-control/blob/main/src/main/java/eu/gillespie/timewarriorcontrol/Tag.java) |
+| `dom.active.start` | not yet implemented | not yet determined |
+| `dom.active.duration` | not yet implemented | not yet determined |
+| `dom.active.json` | not yet implemented | not yet determined |
+||
+| `dom.tracked` | not yet implemented | `Integer` |
+| `dom.tracked.n.tag.count` | not yet implemented | `Integer` |
+| `dom.tracked.n.tag.n` | not yet implemented | [`Tag`](https://github.com/TimothyGillespie/timewarrior-java-control/blob/main/src/main/java/eu/gillespie/timewarriorcontrol/Tag.java) |
+| `dom.tracked.n.start` | not yet implemented | not yet determined |
+| `dom.tracked.n.end` | not yet implemented | not yet determined |
+| `dom.tracked.duration` | not yet implemented | not yet determined |
+| `dom.tracked.json` | not yet implemented | not yet determined |
+||
+| `dom.rc.<name>` | not yet implemented | `String` |
