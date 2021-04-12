@@ -1,4 +1,4 @@
-package eu.gillespie.test.DOM;
+package eu.gillespie.test.dom;
 
 import eu.gillespie.timewarriorcontrol.TimeWarrior;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
