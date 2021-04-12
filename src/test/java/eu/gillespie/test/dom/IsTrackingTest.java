@@ -11,6 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class IsTrackingTest {
     @Test
     void testIsTrackingIfNotTracking() throws VersionFormatException, IOException {
-        assertFalse(new TimeWarrior().isTracking());
+        assertFalse(new TimeWarrior().allowReading().isTracking());
     }
 }

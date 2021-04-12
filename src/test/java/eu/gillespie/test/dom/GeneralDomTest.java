@@ -18,7 +18,7 @@ public class GeneralDomTest {
     @Test
     void testGetDom() throws VersionFormatException, IOException, DOMObjectNotFoundException {
         // time warrior only exits with an error when the dom path begins with "dom."
-        assertThrows(DOMObjectNotFoundException.class, () -> new TimeWarrior().get("dom.nonexistant"));
+        assertThrows(DOMObjectNotFoundException.class, () -> new TimeWarrior().allowReading().get("dom.nonexistant"));
     }
 
 }
