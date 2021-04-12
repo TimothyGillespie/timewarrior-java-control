@@ -79,21 +79,6 @@ public class TimeWarrior {
         }
     }
 
-
-    private String readWhole(InputStream in) {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(in));
-        StringBuilder builder = new StringBuilder();
-
-        String line;
-
-        try {
-            while ((line = bf.readLine()) != null)
-                builder.append(line);
-        } catch (IOException ignored) {}
-
-        return builder.toString();
-    }
-
     /**
      * Enables this instance to perform writing actions like start.
      *
@@ -116,5 +101,19 @@ public class TimeWarrior {
     public TimeWarrior forbidWriting() {
         this.setHasWritePermission(false);
         return this;
+    }
+
+    private String readWhole(InputStream in) {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(in));
+        StringBuilder builder = new StringBuilder();
+
+        String line;
+
+        try {
+            while ((line = bf.readLine()) != null)
+                builder.append(line);
+        } catch (IOException ignored) {}
+
+        return builder.toString();
     }
 }
