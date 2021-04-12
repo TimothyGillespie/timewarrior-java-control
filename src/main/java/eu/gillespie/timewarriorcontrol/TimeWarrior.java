@@ -1,9 +1,11 @@
 package eu.gillespie.timewarriorcontrol;
 
 import eu.gillespie.timewarriorcontrol.exception.DOMObjectNotFoundException;
+import eu.gillespie.timewarriorcontrol.exception.PermissionException;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,12 +13,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 @Getter
+@Setter
 public class TimeWarrior {
 
     private final String cmdCommand;
-
-    // The following refers to
     private final Version version;
+    private boolean hasWritePermission = false;
 
     @Getter(AccessLevel.NONE)
     private Runtime rt = Runtime.getRuntime();
@@ -90,5 +92,29 @@ public class TimeWarrior {
         } catch (IOException ignored) {}
 
         return builder.toString();
+    }
+
+    /**
+     * Enables this instance to perform writing actions like start.
+     *
+     * @return The TimeWarrior instance it was called on for chaining.
+     * @throws PermissionException if the permission is not allowed per twjc.properties
+     */
+    public TimeWarrior allowWriting() {
+        if(!Permission.WRITE.canAllow())
+            throw new PermissionException(Permission.WRITE);
+
+        this.setHasWritePermission(true);
+        return this;
+    }
+
+    /**
+     * Disables this instance to perform writing actions like start.
+     *
+     * @return The TimeWarrior instance it was called on for chaining.
+     */
+    public TimeWarrior forbidWriting() {
+        this.setHasWritePermission(false);
+        return this;
     }
 }
