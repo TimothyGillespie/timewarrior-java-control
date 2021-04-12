@@ -1,5 +1,6 @@
 package eu.gillespie.test;
 
+import eu.gillespie.timewarriorcontrol.Permission;
 import eu.gillespie.timewarriorcontrol.TimeWarrior;
 import eu.gillespie.timewarriorcontrol.Version;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
- * This class is supposed to test for assumptions we make during our tests.
+ * This class is supposed to test for assumptions we make during and for our tests.
  */
 public class AssumptionTest {
 
@@ -42,5 +43,20 @@ public class AssumptionTest {
                     minimumVersion.toString()
                 )
         );
+    }
+
+    @Test
+    void assumeCanAllowReading() throws IOException {
+        assertTrue(Permission.READ.canAllow());
+    }
+
+    @Test
+    void assumeCanAllowWriting() throws IOException {
+        assertTrue(Permission.WRITE.canAllow());
+    }
+
+    @Test
+    void assumeCanAllowDeleting() throws IOException {
+        assertTrue(Permission.DELETE.canAllow());
     }
 }
