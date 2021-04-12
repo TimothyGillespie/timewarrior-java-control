@@ -46,9 +46,12 @@ public class TimeWarrior {
      *
      * @param domPath The DOM path to request. Starts with "dom."
      * @return The returned information
+     * @throws PermissionException if the instance has no reading permission.
      * @throws DOMObjectNotFoundException if timewarrior exits with an error code or another error occurs
      */
     public String get(String domPath) throws DOMObjectNotFoundException {
+        this.checkPermission(Permission.READ);
+
         try {
             Process p = rt.exec(new String[]{
                     getCmdCommand(),
@@ -73,6 +76,7 @@ public class TimeWarrior {
      * It uses the DOM path dom.active.
      *
      * @return true if there is a on going tracking, false otherwise or if an error occurs (i.e. could not find timew)
+     * @throws PermissionException if the instance has no reading permission.
      */
     public boolean isTracking() {
         try {
@@ -89,7 +93,7 @@ public class TimeWarrior {
      * @throws PermissionException if the permission is not allowed per twjc.properties
      */
     public TimeWarrior allowReading() {
-        if(!Permission.WRITE.canAllow())
+        if(!Permission.READ.canAllow())
             throw new PermissionException(String.format(
                     "The permission could not be assigned because it was disabled by the config key %s.canAllow",
                     Permission.READ.getConfigKey()
