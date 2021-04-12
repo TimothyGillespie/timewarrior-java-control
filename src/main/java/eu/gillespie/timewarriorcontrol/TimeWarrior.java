@@ -18,7 +18,10 @@ public class TimeWarrior {
 
     private final String cmdCommand;
     private final Version version;
+
+    private boolean hasReadPermission = false;
     private boolean hasWritePermission = false;
+    private boolean hasDeletePermission = false;
 
     @Getter(AccessLevel.NONE)
     private Runtime rt = Runtime.getRuntime();
@@ -80,6 +83,33 @@ public class TimeWarrior {
     }
 
     /**
+     * Enables this instance to perform reading actions like summary.
+     *
+     * @return The TimeWarrior instance it was called on for chaining.
+     * @throws PermissionException if the permission is not allowed per twjc.properties
+     */
+    public TimeWarrior allowReading() {
+        if(!Permission.WRITE.canAllow())
+            throw new PermissionException(String.format(
+                    "The permission could not be assigned because it was disabled by the config key %s.canAllow",
+                    Permission.READ.getConfigKey()
+            ));
+
+        this.setHasReadPermission(true);
+        return this;
+    }
+
+    /**
+     * Disables this instance to perform reading actions like summary.
+     *
+     * @return The TimeWarrior instance it was called on for chaining.
+     */
+    public TimeWarrior forbidReading() {
+        this.setHasReadPermission(false);
+        return this;
+    }
+
+    /**
      * Enables this instance to perform writing actions like start.
      *
      * @return The TimeWarrior instance it was called on for chaining.
@@ -87,7 +117,10 @@ public class TimeWarrior {
      */
     public TimeWarrior allowWriting() {
         if(!Permission.WRITE.canAllow())
-            throw new PermissionException(Permission.WRITE);
+            throw new PermissionException(String.format(
+                    "The permission could not be assigned because it was disabled by the config key %s.canAllow",
+                    Permission.WRITE.getConfigKey()
+            ));
 
         this.setHasWritePermission(true);
         return this;
@@ -115,5 +148,27 @@ public class TimeWarrior {
         } catch (IOException ignored) {}
 
         return builder.toString();
+    }
+
+    /**
+     * Checks if the needed permission has been given.
+     *
+     * @param neededPermission The permission which is to be checked.
+     * @throws PermissionException if the permission has not been given.
+     */
+    private void checkPermission(Permission neededPermission) {
+        String missingPermission = null;
+
+        if(neededPermission.equals(Permission.READ) && !this.hasReadPermission)
+            missingPermission = "read";
+
+        if(neededPermission.equals(Permission.WRITE) && !this.hasWritePermission)
+            missingPermission = "write";
+
+        if(neededPermission.equals(Permission.DELETE) && !this.hasDeletePermission)
+            missingPermission = "delete";
+
+        if(missingPermission != null)
+            throw new PermissionException(String.format("Instance has no %s permission", missingPermission));
     }
 }
