@@ -44,8 +44,8 @@ Assume `n` is a number like 1. More information is available here: https://timew
 
 | DOM Path | Java Control | Return type |
 | --- | --- | --- |
-| `dom.tag.count` | not yet implemented | `Integer` |
-| `dom.tag.n` | not yet implemented | [`Tag`](https://github.com/TimothyGillespie/timewarrior-java-control/blob/main/src/main/java/eu/gillespie/timewarriorcontrol/Tag.java) |
+| `dom.tag.count` | `tw.getTotalTagCount()` | `Integer` |
+| `dom.tag.n` | `tw.getNthTag(n)` | [`Tag`](https://github.com/TimothyGillespie/timewarrior-java-control/blob/main/src/main/java/eu/gillespie/timewarriorcontrol/Tag.java) |
 ||
 | `dom.active` | `tw.isTracking()` | `boolean` |
 | `dom.active.tag.count` | not yet implemented | `Integer` |
