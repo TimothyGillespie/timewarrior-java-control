@@ -75,7 +75,7 @@ public class TimeWarrior {
      * This is the case if there is a tracking without and end time.
      * It uses the DOM path dom.active.
      *
-     * @return true if there is a on going tracking, false otherwise or if an error occurs (i.e. could not find timew)
+     * @return true if there is a on going tracking, false otherwise or if an error occurs (i.e. could not find timew).
      * @throws PermissionException if the instance has no reading permission.
      */
     public boolean isTracking() {
@@ -87,10 +87,24 @@ public class TimeWarrior {
     }
 
     /**
+     * Get the total number of tags used across all trackings.
+     *
+     * @return The total number of all tags; 0 if an error occurs (i.e. could not find timew).
+     * @throws PermissionException if the read permission is not allowed per twjc.properties
+     */
+    public int getTotalTagCount() {
+        try {
+            return Integer.parseInt(this.get("dom.tag.count"));
+        } catch (DOMObjectNotFoundException | NumberFormatException ignored) {
+            return 0;
+        }
+    }
+
+    /**
      * Enables this instance to perform reading actions like summary.
      *
      * @return The TimeWarrior instance it was called on for chaining.
-     * @throws PermissionException if the permission is not allowed per twjc.properties
+     * @throws PermissionException if the read permission is not allowed per twjc.properties
      */
     public TimeWarrior allowReading() {
         if(!Permission.READ.canAllow())
