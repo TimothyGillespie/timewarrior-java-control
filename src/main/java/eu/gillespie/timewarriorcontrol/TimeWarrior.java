@@ -71,7 +71,8 @@ public class TimeWarrior {
     }
 
     /**
-     * Get the total number of tags used across all trackings.
+     * Gets the total number of tags used across all trackings.
+     * It uses the DOM path dom.tag.count
      *
      * @return The total number of all tags; 0 if an error occurs (i.e. could not find timew).
      * @throws PermissionException if the read permission is not allowed per twjc.properties
@@ -83,6 +84,28 @@ public class TimeWarrior {
             return 0;
         }
     }
+
+    /**
+     * Gets the n-th of tags used across all trackings.
+     * It uses the DOM path dom.tag.n where n is the number given
+     *
+     * @param n The number of the tag to be rertrieved. Must be posititve, non-zero and less or equal to the number of tags
+     * @return The requested tag; null if an error occurs (i.e. could not find timew).
+     * @throws PermissionException if the read permission is not allowed per twjc.properties
+     * @throws IllegalArgumentException if n is negative or zero.
+     */
+    public String getNthTag(int n) {
+        if(n < 1)
+            throw new IllegalArgumentException("n must be posititve and non-zero but was " + String.valueOf(n));
+
+        try {
+            return this.get("dom.tag." + String.valueOf(n));
+        } catch (DOMObjectNotFoundException ignored) {
+            return null;
+        }
+    }
+
+
 
     /**
      * Retrieves the information if any tracking is currently active.
