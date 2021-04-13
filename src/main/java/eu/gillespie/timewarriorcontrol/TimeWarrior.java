@@ -71,6 +71,20 @@ public class TimeWarrior {
     }
 
     /**
+     * Get the total number of tags used across all trackings.
+     *
+     * @return The total number of all tags; 0 if an error occurs (i.e. could not find timew).
+     * @throws PermissionException if the read permission is not allowed per twjc.properties
+     */
+    public int getTotalTagCount() {
+        try {
+            return Integer.parseInt(this.get("dom.tag.count"));
+        } catch (DOMObjectNotFoundException | NumberFormatException ignored) {
+            return 0;
+        }
+    }
+
+    /**
      * Retrieves the information if any tracking is currently active.
      * This is the case if there is a tracking without and end time.
      * It uses the DOM path dom.active.
@@ -83,20 +97,6 @@ public class TimeWarrior {
             return this.get("dom.active").trim().equals("1");
         } catch (DOMObjectNotFoundException ignored) {
             return false;
-        }
-    }
-
-    /**
-     * Get the total number of tags used across all trackings.
-     *
-     * @return The total number of all tags; 0 if an error occurs (i.e. could not find timew).
-     * @throws PermissionException if the read permission is not allowed per twjc.properties
-     */
-    public int getTotalTagCount() {
-        try {
-            return Integer.parseInt(this.get("dom.tag.count"));
-        } catch (DOMObjectNotFoundException | NumberFormatException ignored) {
-            return 0;
         }
     }
 
