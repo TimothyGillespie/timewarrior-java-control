@@ -94,12 +94,12 @@ public class TimeWarrior {
      * @throws PermissionException if the read permission is not allowed per twjc.properties
      * @throws IllegalArgumentException if n is negative or zero.
      */
-    public String getNthTag(int n) {
+    public Tag getNthTag(int n) {
         if(n < 1)
             throw new IllegalArgumentException("n must be posititve and non-zero but was " + String.valueOf(n));
 
         try {
-            return this.get("dom.tag." + String.valueOf(n));
+            return new Tag(this.get("dom.tag." + String.valueOf(n)));
         } catch (DOMObjectNotFoundException ignored) {
             return null;
         }
