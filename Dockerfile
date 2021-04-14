@@ -1,4 +1,4 @@
-FROM timothygillespie/timewarrior-maven-alpine:latest
+FROM timothygillespie/timewarrior-maven-alpine:1.4.3
 
 COPY src /home/app/src
 COPY pom.xml /home/app
