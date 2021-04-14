@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/timothygillespie/timewarrior-maven-alpine-docker-image/timewarrior-maven-alpine:latest
+FROM docker.pkg.github.com/timothygillespie/timewarrior-maven-alpine-docker-image/timewarrior-maven-alpine:1.4.3
 
 COPY src /home/app/src
 COPY pom.xml /home/app
