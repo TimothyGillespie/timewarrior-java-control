@@ -1,5 +1,6 @@
 package eu.gillespie.test.dom;
 
+import eu.gillespie.test.shared.TimeWarriorTestCase;
 import eu.gillespie.timewarriorcontrol.TimeWarrior;
 import eu.gillespie.timewarriorcontrol.exception.PermissionException;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
@@ -10,10 +11,10 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class IsTrackingTest {
+public class IsTrackingTest extends TimeWarriorTestCase {
     @Test
     void testIsTrackingIfNotTracking() throws VersionFormatException, IOException {
-        assertFalse(new TimeWarrior().allowReading().isTracking());
+        assertFalse(tw.allowReading().isTracking());
     }
 
     /*
@@ -22,6 +23,6 @@ public class IsTrackingTest {
 
     @Test
     void testCannotCallWithoutReadingPermission() {
-        assertThrows(PermissionException.class, () -> new TimeWarrior().isTracking());
+        assertThrows(PermissionException.class, () -> tw.isTracking());
     }
 }

@@ -1,6 +1,6 @@
 package eu.gillespie.test.dom;
 
-import eu.gillespie.timewarriorcontrol.TimeWarrior;
+import eu.gillespie.test.shared.TimeWarriorTestCase;
 import eu.gillespie.timewarriorcontrol.exception.PermissionException;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
 import org.junit.jupiter.api.Test;
@@ -10,11 +10,11 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class GetTotalTagCountTest {
+class GetTotalTagCountTest extends TimeWarriorTestCase {
 
     @Test
     void testTotalTagCountWithNothingAdded() throws VersionFormatException, IOException {
-        assertEquals(0, new TimeWarrior().allowReading().getTotalTagCount());
+        assertEquals(0, tw.allowReading().getTotalTagCount());
     }
 
     /*
@@ -23,6 +23,6 @@ class GetTotalTagCountTest {
     
     @Test
     void testCannotCallWithoutReadingPermission() {
-        assertThrows(PermissionException.class, () -> new TimeWarrior().getTotalTagCount());
+        assertThrows(PermissionException.class, () -> tw.getTotalTagCount());
     }
 }

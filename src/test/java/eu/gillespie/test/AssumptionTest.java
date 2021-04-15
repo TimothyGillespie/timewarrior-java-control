@@ -1,7 +1,7 @@
 package eu.gillespie.test;
 
+import eu.gillespie.test.shared.TimeWarriorTestCase;
 import eu.gillespie.timewarriorcontrol.Permission;
-import eu.gillespie.timewarriorcontrol.TimeWarrior;
 import eu.gillespie.timewarriorcontrol.Version;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
 import org.junit.jupiter.api.Test;
@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /*
  * This class is supposed to test for assumptions we make during and for our tests.
  */
-public class AssumptionTest {
+public class AssumptionTest extends TimeWarriorTestCase {
 
     @Test
     void assumeCorrectTimeWarriorVersionRange() throws VersionFormatException, IOException {
-        Version runningVersion = new TimeWarrior().getVersion();
+        Version runningVersion = tw.getVersion();
 
         Version minimumVersion = new Version(1,4,2);
         Version maximumVersionExclusive = new Version(2,0,0);
