@@ -11,6 +11,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,6 +41,28 @@ public class TimeWarrior {
         String versionString = readWhole(p.getInputStream());
 
         this.version = new Version(versionString);
+    }
+
+    /**
+     * Starts time tracking with the given tags. If there is an already active time tracking it will stop the current
+     * tracking and then create the new one.
+     *
+     * @param tags The tags, as strings, which should be associated with this tracking.
+     * @return The Tracking object of the just started tracking.
+     *
+     */
+    public Tracking start(String... tags) throws IOException, InterruptedException {
+        this.checkPermission(Permission.WRITE);
+
+        List<String> cmdList = new LinkedList<>();
+        cmdList.add(this.cmdCommand);
+        cmdList.add("start");
+        cmdList.addAll(Arrays.asList(tags));
+
+        Process p = rt.exec(cmdList.toArray(new String[0]));
+        p.waitFor();
+
+        return null;
     }
 
     /**
