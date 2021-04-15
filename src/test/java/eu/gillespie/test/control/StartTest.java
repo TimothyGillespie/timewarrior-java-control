@@ -1,9 +1,7 @@
 package eu.gillespie.test.control;
 
 import eu.gillespie.test.shared.TimeWarriorTestCase;
-import eu.gillespie.timewarriorcontrol.TimeWarrior;
 import eu.gillespie.timewarriorcontrol.exception.PermissionException;
-import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -14,9 +12,9 @@ public class StartTest extends TimeWarriorTestCase {
 
     @Test
     void testStartActivatesTracking() throws IOException, InterruptedException {
-        assertFalse(readingTw.isTracking());
+        assertFalse(testMasterTw.isTracking());
         tw.start();
-        assertTrue(readingTw.isTracking());
+        assertTrue(testMasterTw.isTracking());
     }
 
     /*
