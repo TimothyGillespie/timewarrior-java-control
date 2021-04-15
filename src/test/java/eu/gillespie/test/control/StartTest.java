@@ -13,7 +13,7 @@ public class StartTest extends TimeWarriorTestCase {
     @Test
     void testStartActivatesTracking() throws IOException, InterruptedException {
         assertFalse(testMasterTw.isTracking());
-        tw.start();
+        tw.allowWriting().start();
         assertTrue(testMasterTw.isTracking());
     }
 
