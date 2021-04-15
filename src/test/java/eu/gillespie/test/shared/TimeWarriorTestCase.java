@@ -17,11 +17,17 @@ import java.util.UUID;
  * Purpose of this class is to be extend and to provide a TimeWarrior instance this way.
  */
 public class TimeWarriorTestCase {
+    // This instance will perform the test commands and comes with no permissions.
     protected TimeWarrior tw;
+
+    // This instance will be used to check success of the operations. It is separated so the testing timewarrior does
+    // not receive reading permission which aleady made me miss an error in the past for a brief time.
+    protected TimeWarrior readingTw;
 
     @BeforeEach
     void setUpTw() throws VersionFormatException, IOException {
         this.tw = new TimeWarrior();
+        this.readingTw = new TimeWarrior().allowReading();
     }
 
     @AfterEach
