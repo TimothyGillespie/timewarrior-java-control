@@ -24,4 +24,36 @@ public class TimeWarriorTestCase {
         this.tw = new TimeWarrior();
     }
 
+    @AfterEach
+    void resetTimeWarriorData() throws IOException, InterruptedException {
+
+        if(!Permission.DELETE.canAllow())
+            throw new PermissionException("Must be able to allow deleting to run tests.");
+
+        String uuid = UUID.randomUUID().toString();
+
+        Runtime r = Runtime.getRuntime();
+        Process p;
+
+        p = r.exec(new String[] {
+                "/bin/sh",
+                "-c",
+                "mkdir -p ~/.timewarrior-control/" + uuid,
+        });
+        p.waitFor();
+
+        p = r.exec(new String[] {
+                "/bin/sh",
+                "-c",
+                "mv ~/.timewarrior ~/.timewarrior-control/" + uuid,
+        });
+        p.waitFor();
+
+        p = r.exec(new String[] {
+                "/bin/sh",
+                "-c",
+                "mkdir ~/.timewarrior",
+        });
+        p.waitFor();
+    }
 }
