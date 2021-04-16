@@ -52,7 +52,7 @@ Assume `n` is a number like 1. More information is available here: https://timew
 | `dom.active.tag.n` | not yet implemented | [`Tag`](https://github.com/TimothyGillespie/timewarrior-java-control/blob/main/src/main/java/eu/gillespie/timewarriorcontrol/Tag.java) |
 | `dom.active.start` | not yet implemented | not yet determined |
 | `dom.active.duration` | not yet implemented | not yet determined |
-| `dom.active.json` | not yet implemented | not yet determined |
+| `dom.active.json` | `tw.getActiveTracking()` | [`Tracking`](https://github.com/TimothyGillespie/timewarrior-java-control/blob/main/src/main/java/eu/gillespie/timewarriorcontrol/Tracking.java) |
 ||
 | `dom.tracked` | not yet implemented | `Integer` |
 | `dom.tracked.n.tag.count` | not yet implemented | `Integer` |

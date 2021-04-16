@@ -149,6 +149,21 @@ public class TimeWarrior {
     }
 
     /**
+     * Retrieves the information of the currently active tracking.
+     * This usually contains all information except the end time.
+     * This uses the DOM path dom.active.json.
+     *
+     * @return The currently active tracking, null if no tracking is ongoing.
+     */
+    public Tracking getActiveTracking() {
+        try {
+            return Tracking.fromJson(this.get("dom.active.json"));
+        } catch (DOMObjectNotFoundException ignored) {
+            return null;
+        }
+    }
+
+    /**
      * Enables this instance to perform reading actions like summary.
      *
      * @return The TimeWarrior instance it was called on for chaining.
