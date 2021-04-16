@@ -15,7 +15,7 @@ import java.time.LocalTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TrackingReadTest {
+class TrackingReadTest {
 
     @Test
     void testReadingExampleFull() throws IOException {
