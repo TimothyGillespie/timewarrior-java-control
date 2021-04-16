@@ -4,6 +4,7 @@ import eu.gillespie.test.shared.TimeWarriorTestCase;
 import eu.gillespie.timewarriorcontrol.Tag;
 import eu.gillespie.timewarriorcontrol.Tracking;
 import eu.gillespie.timewarriorcontrol.exception.PermissionException;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GetActiveTrackingTest extends TimeWarriorTestCase {
 
+    @Disabled
     @Test
     void testSimple() throws IOException, InterruptedException {
         testMasterTw.start("tag1", "tag2");
