@@ -16,8 +16,4 @@ public class Tracking {
     LocalDateTime startTime;
     LocalDateTime endTime;
 
-    public Tracking(int id) {
-
-    }
-
 }
