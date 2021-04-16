@@ -9,6 +9,7 @@ import eu.gillespie.timewarriorcontrol.Tracking;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class TrackingAdapter extends TypeAdapter<Tracking> {
@@ -26,17 +27,31 @@ public class TrackingAdapter extends TypeAdapter<Tracking> {
             if (token.equals(JsonToken.NAME)) {
                 //get the current token
                 fieldname = jsonReader.nextName();
+                continue;
             }
 
             switch(fieldname) {
                 case "start":
-                    tracking.setStartTime(LocalDateTime.parse(jsonReader.nextString()));
+                    tracking.setStartTime(LocalDateTime.parse(jsonReader.nextString(), DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmssX")));
                     break;
                 case "end":
-                    tracking.setEndTime(LocalDateTime.parse(jsonReader.nextString()));
+                    tracking.setEndTime(LocalDateTime.parse(jsonReader.nextString(), DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmssX")));
                     break;
                 case "tags":
-                    tags.add(new Tag(jsonReader.nextString()));
+                    while(true) {
+                        token = jsonReader.peek();
+                        if (token.equals(JsonToken.BEGIN_ARRAY)) {
+                            jsonReader.beginArray();
+                            continue;
+                        }
+
+                        if(token.equals(JsonToken.END_ARRAY)) {
+                            jsonReader.endArray();
+                            break;
+                        }
+
+                        tags.add(new Tag(jsonReader.nextString()));
+                    }
                     break;
                 case "annotation":
                     tracking.setAnnotation(jsonReader.nextString());
