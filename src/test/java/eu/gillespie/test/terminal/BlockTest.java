@@ -37,4 +37,12 @@ public class BlockTest {
                 getClass().getClassLoader().getResource("terminal/extremelyLongLine.txt").getPath()
         });
     }
+
+    @Test
+    void testIfTerminalBlocksForLongFiles() throws IOException, InterruptedException {
+        SyncTerminalHandler.exec(new String[] {
+                "cat",
+                getClass().getClassLoader().getResource("terminal/longFile.txt").getPath()
+        });
+    }
 }
