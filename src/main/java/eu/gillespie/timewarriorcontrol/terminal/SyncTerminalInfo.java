@@ -8,4 +8,5 @@ import lombok.Getter;
 public class SyncTerminalInfo {
     String terminalOutput;
     String errorOutput;
+    int exitCode;
 }

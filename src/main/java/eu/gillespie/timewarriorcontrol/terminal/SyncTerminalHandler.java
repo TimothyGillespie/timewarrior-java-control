@@ -33,7 +33,8 @@ public class SyncTerminalHandler {
 
         return new SyncTerminalInfo(
                 String.join("\\n", allInLines),
-                String.join("\\n", allErrLines)
+                String.join("\\n", allErrLines),
+                p.exitValue()
         );
     }
 }
