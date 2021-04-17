@@ -15,10 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GetActiveTrackingTest extends TimeWarriorTestCase {
 
-    @Disabled
     @Test
     void testSimple() throws IOException, InterruptedException {
-        testMasterTw.start("tag1", "tag2");
+        testMasterTw.start("tag1", "tag 2");
         LocalDateTime startTime = LocalDateTime.now();
 
         Tracking tracking = tw.allowReading().getActiveTracking();
