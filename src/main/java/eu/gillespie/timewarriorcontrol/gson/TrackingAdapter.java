@@ -57,6 +57,7 @@ public class TrackingAdapter extends TypeAdapter<Tracking> {
                     tracking.setAnnotation(jsonReader.nextString());
                     break;
                 default:
+                    jsonReader.skipValue();
                     break;
             }
         }
