@@ -12,8 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TrackingReadTest {
 
@@ -40,6 +39,23 @@ class TrackingReadTest {
         assertEquals("Simple Annotation", testTracking.getAnnotation());
     }
 
+    @Test
+    void testReadingExamplePartial() throws IOException {
+        String json = FileLoader.load("gson/TimeWarriorJsonExamplePartialOneLine.json");
+        Gson gson = new Gson().newBuilder().registerTypeAdapter(Tracking.class, new TrackingAdapter()).create();
+        Tracking testTracking = gson.fromJson(json, Tracking.class);
 
+        assertEquals(
+                LocalDateTime.of(LocalDate.of(2021, 4, 17), LocalTime.of(17, 24, 31)),
+                testTracking.getStartTime()
+        );
 
+        assertNull(testTracking.getEndTime());
+
+        assertEquals(2, testTracking.getTags().size());
+        assertTrue(testTracking.getTags().contains(new Tag("tag1")));
+        assertTrue(testTracking.getTags().contains(new Tag("tag 2")));
+
+        assertEquals(null, testTracking.getAnnotation());
+    }
 }
