@@ -45,4 +45,12 @@ public class BlockTest {
                 getClass().getClassLoader().getResource("terminal/longFile.txt").getPath()
         });
     }
+
+    @Test
+    void testIfTerminalBlocksForOneLineJson() throws IOException, InterruptedException {
+        SyncTerminalHandler.exec(new String[] {
+                "cat",
+                getClass().getClassLoader().getResource("terminal/oneLineJson.json").getPath()
+        });
+    }
 }
