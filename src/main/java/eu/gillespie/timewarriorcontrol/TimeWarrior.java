@@ -3,6 +3,8 @@ package eu.gillespie.timewarriorcontrol;
 import eu.gillespie.timewarriorcontrol.exception.DOMObjectNotFoundException;
 import eu.gillespie.timewarriorcontrol.exception.PermissionException;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
+import eu.gillespie.timewarriorcontrol.terminal.SyncTerminalHandler;
+import eu.gillespie.timewarriorcontrol.terminal.SyncTerminalInfo;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,15 +32,15 @@ public class TimeWarrior {
     private Runtime rt = Runtime.getRuntime();
 
 
-    public TimeWarrior() throws IOException, VersionFormatException {
+    public TimeWarrior() throws IOException, VersionFormatException, InterruptedException {
         this("timew");
     }
 
-    public TimeWarrior(String cmdCommand) throws IOException, VersionFormatException {
+    public TimeWarrior(String cmdCommand) throws IOException, VersionFormatException, InterruptedException {
         this.cmdCommand = cmdCommand;
 
-        Process p = rt.exec(new String[] {getCmdCommand(), "--version"});
-        String versionString = readWhole(p.getInputStream());
+        String versionString = SyncTerminalHandler.exec(new String[] {getCmdCommand(), "--version"})
+                .getTerminalOutput().trim();
 
         this.version = new Version(versionString);
     }
@@ -59,8 +61,7 @@ public class TimeWarrior {
         cmdList.add("start");
         cmdList.addAll(Arrays.asList(tags));
 
-        Process p = rt.exec(cmdList.toArray(new String[0]));
-        p.waitFor();
+        SyncTerminalHandler.exec(cmdList.toArray(new String[0]));
 
         return null;
     }
@@ -78,18 +79,16 @@ public class TimeWarrior {
         this.checkPermission(Permission.READ);
 
         try {
-            Process p = rt.exec(new String[]{
+            SyncTerminalInfo terminalInfo = SyncTerminalHandler.exec(new String[]{
                     getCmdCommand(),
                     "get",
                     domPath
             });
 
-            p.waitFor();
-
-            if(p.exitValue() != 0)
+            if(terminalInfo.getExitCode() != 0)
                 throw new DOMObjectNotFoundException(domPath);
 
-            return readWhole(p.getInputStream()).trim();
+            return terminalInfo.getTerminalOutput().trim();
         } catch (IOException | InterruptedException converted) {
             throw new DOMObjectNotFoundException(domPath);
         }

@@ -22,7 +22,7 @@ public class TimeWarriorTestCase {
     protected TimeWarrior testMasterTw;
 
     @BeforeEach
-    void setUpTw() throws VersionFormatException, IOException {
+    void setUpTw() throws VersionFormatException, IOException, InterruptedException {
         this.tw = new TimeWarrior();
         this.testMasterTw = new TimeWarrior().allowReading().allowWriting();
     }
