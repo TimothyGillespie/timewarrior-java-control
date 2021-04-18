@@ -49,7 +49,7 @@ class TrackingTimewStartUserViewTest {
 
     @Test
     void testRealLifeActiveExample() throws IOException {
-        String recorded18Month = FileLoader.load("userview/tracking-raw/timewTrackingRecordedUserview18months.txt");
+        String recorded18Month = FileLoader.load("userview/tracking-raw/timewTrackingActiveRealLifeExample.txt");
         Tracking parsedTracking = Tracking.fromUserView(recorded18Month);
 
         assertEquals(
