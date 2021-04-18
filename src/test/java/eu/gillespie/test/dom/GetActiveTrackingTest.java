@@ -4,7 +4,6 @@ import eu.gillespie.test.shared.TimeWarriorTestCase;
 import eu.gillespie.timewarriorcontrol.Tag;
 import eu.gillespie.timewarriorcontrol.Tracking;
 import eu.gillespie.timewarriorcontrol.exception.PermissionException;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

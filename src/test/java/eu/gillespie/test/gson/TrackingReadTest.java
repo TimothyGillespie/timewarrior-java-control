@@ -56,6 +56,25 @@ class TrackingReadTest {
         assertTrue(testTracking.getTags().contains(new Tag("tag1")));
         assertTrue(testTracking.getTags().contains(new Tag("tag 2")));
 
-        assertEquals(null, testTracking.getAnnotation());
+        assertNull(testTracking.getAnnotation());
+    }
+
+    @Test
+    void testReadingExampleFullHasCorrectOrderOfTags() throws IOException {
+        String json = FileLoader.load("gson/TimeWarriorJsonExamplePartialOneLine.json");
+        Gson gson = new Gson().newBuilder().registerTypeAdapter(Tracking.class, new TrackingAdapter()).create();
+        Tracking testTracking = gson.fromJson(json, Tracking.class);
+
+        assertEquals(
+                new Tag("tag 1"),
+                testTracking.getTags().get(0),
+                "The tags don't seem to be parsed in the right order."
+        );
+
+        assertEquals(
+                new Tag("tag2"),
+                testTracking.getTags().get(1),
+                "The tags don't seem to be parsed in the right order."
+        );
     }
 }
