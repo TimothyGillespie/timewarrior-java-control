@@ -50,6 +50,9 @@ public class TrackingAdapter extends TypeAdapter<Tracking> {
                             break;
                         }
 
+                        if(!token.equals(JsonToken.STRING))
+                            break;
+
                         tags.add(new Tag(jsonReader.nextString()));
                     }
                     break;

@@ -61,7 +61,7 @@ class TrackingReadTest {
 
     @Test
     void testReadingExampleFullHasCorrectOrderOfTags() throws IOException {
-        String json = FileLoader.load("gson/TimeWarriorJsonExamplePartialOneLine.json");
+        String json = FileLoader.load("gson/TimeWarriorJsonExampleFull.json");
         Gson gson = new Gson().newBuilder().registerTypeAdapter(Tracking.class, new TrackingAdapter()).create();
         Tracking testTracking = gson.fromJson(json, Tracking.class);
 
