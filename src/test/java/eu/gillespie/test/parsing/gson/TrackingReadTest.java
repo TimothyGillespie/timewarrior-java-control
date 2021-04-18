@@ -1,4 +1,4 @@
-package eu.gillespie.test.gson;
+package eu.gillespie.test.parsing.gson;
 
 import com.google.gson.Gson;
 import eu.gillespie.test.shared.FileLoader;
@@ -23,7 +23,7 @@ class TrackingReadTest {
         Tracking testTracking = gson.fromJson(json, Tracking.class);
 
         assertEquals(
-                LocalDateTime.of(LocalDate.of(2021, 4, 9), LocalTime.of(20, 55, 01)),
+                LocalDateTime.of(LocalDate.of(2021, 4, 9), LocalTime.of(20, 55, 1)),
                 testTracking.getStartTime()
         );
 
