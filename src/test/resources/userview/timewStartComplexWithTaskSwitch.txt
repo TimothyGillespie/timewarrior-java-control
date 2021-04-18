@@ -1,0 +1,10 @@
+Recorded "@_[]^/{}*#$|~´¯¿⅞°*Ω_™±°!>ß<>=&?()-:%;,." "more stuff" morestuff test "tiest!=<]_" "understanding something"
+  Started 2021-04-18T10:25:00
+  Ended                 27:08
+  Total               0:02:08
+Note: 'computer' is a new tag.
+Note: '"new @_[]^/{}*#$|~´¯¿⅞°*Ω_™±°!>ß<>=&?()-:%;,."' is a new tag.
+Tracking computer "more stuff" morestuff "new @_[]^/{}*#$|~´¯¿⅞°*Ω_™±°!>ß<>=&?()-:%;,." test "tiest!=<]_" "understanding something"
+  Started 2021-04-18T10:27:08
+  Current                  08
+  Total               0:00:00

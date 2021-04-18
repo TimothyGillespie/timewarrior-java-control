@@ -1,0 +1,5 @@
+Note: 'newtag3' is a new tag.
+Tracking newtag3
+  Started 2021-04-18T10:07:06
+  Current                  06
+  Total               0:00:00
