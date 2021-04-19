@@ -17,7 +17,7 @@ public class StartInfo {
      private final Tracking currentTracking;
      private final List<Tag> newTags;
 
-     private static Pattern newTagPattern = Pattern.compile("Note: '\\\"?(?<newTag>[^\\'\\\"]*)\\\"?' is a new tag.$");
+     private static final Pattern newTagPattern = Pattern.compile("Note: '\\\"?(?<newTag>[^\\'\\\"]*)\\\"?' is a new tag.$");
 
     /**
      * Parses the output the timew and timew stop command.
