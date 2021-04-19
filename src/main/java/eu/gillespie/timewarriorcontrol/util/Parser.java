@@ -12,7 +12,7 @@ public class Parser {
 
     public static final DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
-    public static LocalDateTime parseUserviewDateDate(String dateString, LocalDateTime fillDateTime) {
+    public static LocalDateTime parseUserviewDateDateTime(String dateString, LocalDateTime fillDateTime) {
         dateString = dateString.trim();
 
         long dashCount = dateString.chars().filter(ch -> ch == '-').count();

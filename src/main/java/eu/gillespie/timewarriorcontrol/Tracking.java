@@ -79,13 +79,13 @@ public class Tracking {
 
             if(singleLine.startsWith("Started")) {
                 singleLine = singleLine.replaceFirst("Started", "").trim();
-                tracking.setStartTime(Parser.parseUserviewDateDate(singleLine, LocalDateTime.now()));
+                tracking.setStartTime(Parser.parseUserviewDateDateTime(singleLine, LocalDateTime.now()));
                 continue;
             }
 
             if(singleLine.startsWith("Ended")) {
                 singleLine = singleLine.replaceFirst("Ended", "").trim();
-                tracking.setEndTime(Parser.parseUserviewDateDate(singleLine, tracking.startTime));
+                tracking.setEndTime(Parser.parseUserviewDateDateTime(singleLine, tracking.startTime));
             }
         }
 
