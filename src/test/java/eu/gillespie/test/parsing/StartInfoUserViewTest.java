@@ -120,7 +120,7 @@ class StartInfoUserViewTest {
         assertNull(startInfo.getPreviousTracking().getAnnotation());
         assertEquals(
                 expectedTagsPrevious,
-                startInfo.getCurrentTracking().getTags()
+                startInfo.getPreviousTracking().getTags()
         );
 
         assertEquals(
@@ -153,7 +153,7 @@ class StartInfoUserViewTest {
         assertEquals(
                 LocalDateTime.of(
                         LocalDate.of(2021,4,18),
-                        LocalTime.of(10,25,0)
+                        LocalTime.of(10,27,8)
                 ),
                 startInfo.getCurrentTracking().getStartTime(),
                 "Current Tracking start time did not match."
@@ -190,7 +190,7 @@ class StartInfoUserViewTest {
         assertNull(startInfo.getPreviousTracking().getAnnotation());
         assertEquals(
                 expectedTagsPrevious,
-                startInfo.getCurrentTracking().getTags()
+                startInfo.getPreviousTracking().getTags()
         );
 
         assertEquals(
@@ -223,7 +223,7 @@ class StartInfoUserViewTest {
         assertEquals(
                 LocalDateTime.of(
                         LocalDate.of(2021,4,18),
-                        LocalTime.of(10,33,57)
+                        LocalTime.of(12,33,57)
                 ),
                 startInfo.getCurrentTracking().getStartTime(),
                 "Current Tracking start time did not match."

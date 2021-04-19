@@ -65,7 +65,11 @@ public class Tracking {
                 LinkedList<Tag> tags = new LinkedList<>();
 
                 while(matcher.find()) {
-                    tags.add(new Tag(matcher.group()));
+                    String potentialTag = matcher.group();
+                    if(potentialTag.startsWith("\""))
+                        potentialTag = matcher.group(1);
+
+                    tags.add(new Tag(potentialTag));
                 }
 
                 tracking.setTags(tags);
@@ -75,13 +79,13 @@ public class Tracking {
 
             if(singleLine.startsWith("Started")) {
                 singleLine = singleLine.replaceFirst("Started", "").trim();
-                tracking.setStartTime(Parser.parseUserviewDateDate(singleLine));
+                tracking.setStartTime(Parser.parseUserviewDateDate(singleLine, LocalDateTime.now()));
                 continue;
             }
 
             if(singleLine.startsWith("Ended")) {
                 singleLine = singleLine.replaceFirst("Ended", "").trim();
-                tracking.setEndTime(Parser.parseUserviewDateDate(singleLine));
+                tracking.setEndTime(Parser.parseUserviewDateDate(singleLine, tracking.startTime));
             }
         }
 
