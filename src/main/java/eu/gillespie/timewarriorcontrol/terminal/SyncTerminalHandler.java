@@ -32,8 +32,8 @@ public class SyncTerminalHandler {
         p.waitFor();
 
         return new SyncTerminalInfo(
-                String.join("\\n", allInLines),
-                String.join("\\n", allErrLines),
+                String.join("\n", allInLines),
+                String.join("\n", allErrLines),
                 p.exitValue()
         );
     }

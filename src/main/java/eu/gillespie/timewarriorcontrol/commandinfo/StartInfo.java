@@ -35,7 +35,7 @@ public class StartInfo {
         boolean undecided = true;
         boolean recorded = true;
 
-        String[] lines = userView.split("\\n");
+        String[] lines = userView.split("\n");
 
 
         for(String singleLine : lines) {
