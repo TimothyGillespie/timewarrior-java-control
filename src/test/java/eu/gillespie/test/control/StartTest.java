@@ -21,8 +21,8 @@ class StartTest extends TimeWarriorTestCase {
     );
 
     static final List<Tag> tagList2 = Arrays.asList(
-            new Tag("tag1"),
-            new Tag("tag 2")
+            new Tag("tag 2"),
+            new Tag("tag3")
     );
 
     @Test
