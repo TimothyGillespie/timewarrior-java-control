@@ -27,7 +27,7 @@ Assume `Timewarrior tw = new Timewarrior()`
 | `timew shorten @<id> [@<id> ...] <duration>` | not yet implemented |
 | `timew show` | not yet implemented |
 | `timew split @<id> [@<id> ...]` | not yet implemented |
-| `timew start [<date>] [<tag> ...]` | not yet implemented |
+| `timew start [<date>] [<tag> ...]` | Partially with `tw.start(<tag> ...)` |
 | `timew stop [<tag> ...]` | not yet implemented |
 | `timew summary [<interval>] [<tag> ...]` | not yet implemented |
 | `timew tag @<id> [@<id> ...]` | not yet implemented |
