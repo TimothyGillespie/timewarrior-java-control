@@ -1,5 +1,6 @@
 package eu.gillespie.timewarriorcontrol;
 
+import eu.gillespie.timewarriorcontrol.commandinfo.StartInfo;
 import eu.gillespie.timewarriorcontrol.exception.DOMObjectNotFoundException;
 import eu.gillespie.timewarriorcontrol.exception.PermissionException;
 import eu.gillespie.timewarriorcontrol.exception.VersionFormatException;
@@ -50,10 +51,10 @@ public class TimeWarrior {
      * tracking and then create the new one.
      *
      * @param tags The tags, as strings, which should be associated with this tracking.
-     * @return The Tracking object of the just started tracking.
+     * @return The StartInfo object containing information various information about the occurred changes.
      *
      */
-    public Tracking start(String... tags) throws IOException, InterruptedException {
+    public StartInfo start(String... tags) throws IOException, InterruptedException {
         this.checkPermission(Permission.WRITE);
 
         List<String> cmdList = new LinkedList<>();
@@ -61,9 +62,9 @@ public class TimeWarrior {
         cmdList.add("start");
         cmdList.addAll(Arrays.asList(tags));
 
-        SyncTerminalHandler.exec(cmdList.toArray(new String[0]));
+        SyncTerminalInfo terminalInfo = SyncTerminalHandler.exec(cmdList.toArray(new String[0]));
 
-        return null;
+        return StartInfo.fromUserView(terminalInfo.getTerminalOutput());
     }
 
     /**
